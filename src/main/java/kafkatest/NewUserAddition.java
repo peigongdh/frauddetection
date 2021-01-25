@@ -12,7 +12,6 @@ public class NewUserAddition extends KeyedProcessFunction<String, String, String
 
     @Override
     public void processElement(String s, Context context, Collector<String> collector) throws Exception {
-        System.out.println(s);
-//        LOG.info(s);
+        LOG.info(s);
     }
 }
