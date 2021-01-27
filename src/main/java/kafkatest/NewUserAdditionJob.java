@@ -8,8 +8,6 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.filesystem.StreamingFileSink;
 import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
-import org.apache.flink.walkthrough.common.entity.Alert;
-import org.apache.flink.walkthrough.common.sink.AlertSink;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
