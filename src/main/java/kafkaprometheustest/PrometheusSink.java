@@ -7,6 +7,7 @@ import org.apache.flink.annotation.PublicEvolving;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @PublicEvolving
 public class PrometheusSink implements SinkFunction<String> {
@@ -21,11 +22,19 @@ public class PrometheusSink implements SinkFunction<String> {
             .labelNames("app_id")
             .register(registry);
 
+    private static LocalDate date = LocalDate.now();
+
     PrometheusSink() {
 
     }
 
     public void invoke(String value, Context context) throws IOException {
+        // reset everyday
+        LocalDate nowDate = LocalDate.now();
+        if (nowDate.isEqual(date.plusDays(1))) {
+            date = nowDate;
+            counter.clear();
+        }
         try {
             counter.labels(value).inc();
         } finally {
