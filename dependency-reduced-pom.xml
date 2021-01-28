@@ -88,7 +88,7 @@
               </filters>
               <transformers>
                 <transformer>
-                  <mainClass>prometheustest.PrometheusExampleJob</mainClass>
+                  <mainClass>kafkaprometheustest.NewUserAdditionJob</mainClass>
                 </transformer>
               </transformers>
             </configuration>

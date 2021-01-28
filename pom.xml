@@ -179,7 +179,7 @@ under the License.
 							</filters>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>prometheustest.PrometheusExampleJob</mainClass>
+									<mainClass>kafkaprometheustest.NewUserAdditionJob</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>
