@@ -11,23 +11,24 @@ import java.io.IOException;
 @PublicEvolving
 public class PrometheusSink implements SinkFunction<String> {
 
+    private static final PushGateway pg = new PushGateway("127.0.0.1:9091");
+
+    private static final CollectorRegistry registry = new CollectorRegistry();
+
     private static final Counter counter = Counter.build()
             .name("new_user_addition_3")
             .help("new user addition")
             .labelNames("app_id")
-            .register();
+            .register(registry);
 
     PrometheusSink() {
 
     }
 
     public void invoke(String value, Context context) throws IOException {
-        CollectorRegistry registry = new CollectorRegistry();
         try {
-            counter.register(registry);
             counter.labels(value).inc();
         } finally {
-            PushGateway pg = new PushGateway("127.0.0.1:9091");
             pg.pushAdd(registry, "new_user_addition_3_job");
         }
     }
